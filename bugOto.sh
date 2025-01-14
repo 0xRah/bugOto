@@ -436,7 +436,7 @@ while true; do
             echo ""
             ;;
 
-        10)
+        11)
         
             echo -r "${RED}[!] Pending Implementations${NC}"
             echo ""
@@ -496,8 +496,6 @@ cd ${current_directory}
 # > cat zosubs.txt | wc -l
 # > cat zosubs.txt | httpx -port 80,8080,8000,443 -threads 200 >> zolive.txt
 # 
-#
-
 
 
 
