@@ -1,5 +1,3 @@
-        100
-            
 #!/bin/bash
 
 # Define colors
@@ -29,8 +27,6 @@ echo -e "               ${LG}/___/${NC}"
 echo -e "                          Made by Rahuman Mohamed (@rahuman_hamdi)"
 echo
 
-
-
 current_directory=$(pwd)
 domain_name=""
 normalized_domain=""
@@ -39,7 +35,6 @@ report_log="report_log.txt"
 excluded_extensions="png|jpg|gif|jpeg|icon|swf|woff|svg|css|webp|woff|woff2|eot|ttf|tiff|otf|mp4"
 move_extensions="js,txt,pdf,json"
 
-keywordsGraphQl=""
 
 # Function to display options
 display_options() {
@@ -73,17 +68,9 @@ show_progress() {
 
 check_urls_tools() {
 
-    #echo -e "${BOLD_BLUE}[*] Starting to gather urls for:${BOLD_WHITE} $normalized_domain${NC} ...⌛️"
     echo -e "${BOLD_BLUE}[*] Checking URLs crawling tools${NC} ...⌛️"
 
-    # TODO: - Do check whether tool installed ot not, if not add this error message.txt to show the end on Report section
-    # echo -e "${BOLD_WHITE}1. Dnsbruter:${NC}"
-    # dnsbruter -h > /dev/null 2>&1 && echo "Dnsbruter is installed" || echo "Dnsbruter is not installed correctly"
-
-    # Tools installtion check
-    #gau -h > /dev/null 2>&1 && echo -e "${GREEN}[~] Gau is installed ✅${NC}" || (echo -e "${RED}Gau is not installed correctly 💥${NC}" >> $error_log)
-    # FIXIT above not showing the error on terminal
-
+    
     gau -h > /dev/null 2>&1 && echo -e "${GREEN}[~] Gau is installed${NC}" || echo -e "${RED}[x] Gau is not installed correctly${NC}"
     waybackurls -h > /dev/null 2>&1 && echo -e "${GREEN}[~] Waybackurls is installed${NC}" || echo -e "${RED}[x] Waybackurls is not installed correctly$NC}"
     #hakrawler -h > /dev/null 2>&1 && echo -e "${GREEN}[~] Hakrawler is installed${NC}" || echo -e "${RED}[x] Hakrawler is not installed correctly$NC}"
@@ -96,28 +83,10 @@ check_urls_tools() {
 
     echo ""
 
-# TODO:
-## Another check, if any of the tool is not installed, Do not that tool crawling, put each crawling in a function or IF/Else
+
 }
 
-# =================================================================================================================
 
-# TODO:
-# Clone repositories if not present -- NOT IN USE
-clone_repo() {
-    local repo_url=$1
-    local target_dir=$2
-    if [ ! -d "$target_dir" ]; then
-        echo "Cloning $repo_url..."
-        git clone "$repo_url" "$target_dir"
-    fi
-}
-# TODO: .. CHECK THIS
-# clone_repo "https://github.com/projectdiscovery/nuclei-templates.git" "$home_dir/nuclei-templates"
-
-# ===================================================================================================
-# TODO: NEED OPTIONS like -d for single domain to crawl or -f for file with multiple domains ##############
-# ===================================================================================================
 echo ""
 
 # Function - single domain crawling for urls......
@@ -178,15 +147,12 @@ single_domain_urls() {
 
 }
 
-# TODO: use below code for option 5 for multiple targets to crawl
 
 # ==== Option 4 - URL Crawling & Filtering - Single target (with Gf-Patterns outputs) ====
 
 get_urls() { 
 
-    # TODO: =========================
-    #  Fix the error handling
-
+    
     # Step 1: Collecting urls with Gau
     #{
         show_progress "${normalized_domain}" "using Gau"
@@ -355,19 +321,6 @@ run_option_4() {
     exit 1
 }
 
-run_option_5() {
-    check_urls_tools
-    single_domain_urls
-    get_urls
-    sleep 2
-    combine_urls 
-    probe_urls
-    sleep 2
-    gf_urls
-    echo ""
-    echo -e "${GREEN}[*] URLs scanning completed. Results are saved in ${domain_name}/urls${NC}"
-    exit 1
-}
 
 # Main script logic
 
@@ -453,49 +406,3 @@ while true; do
 done
 
 cd ${current_directory}
-
-# TODO: 
-# loops for multiple urls -> also later needs scan subdomain folder and prompt the user with options to either manually selecting or tools select
-# add out-of-scope file and remove out-of-scopt from domain & urls if url crawl option is selected
-# Subdomains enum
-# Installing gf and gf-patternes
-
-# Tools Used
-
-# 1. GAU
-# 2. Waybackurls
-# 3. hakrawler 
-# 4. urlfinder
-# 5. katana
-
-# anew
-# uro
-# httpx
-# subprober
-
-# gf
-# gf-patterns
-
-# ==================================
-# TODO
-
-# Tootls use
-# arjun - to get hidden parameters
-#
-# https://x.com/wtf_brut/status/1877442049760440488 - using Arjun with kss (this need to loop)
-#
-# Assetfinder for sub enumeration
-# haktrails subdomains | httpx | hakrawler
-#
-# sudo apt install jq
-#sudo apt install libjson-perl
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sub domain enumeration sections ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# > cat zosubs.txt | wc -l
-# > cat zosubs.txt | httpx -port 80,8080,8000,443 -threads 200 >> zolive.txt
-# 
-
-
-
