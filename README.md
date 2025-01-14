@@ -7,6 +7,7 @@ Files/Folder structure
 
 Working_Directory (example: ~/Bugbountry/targets/intigriti/redbull<br>
 
-<b>redbull.com<b><br>
-├── urls<br>
-└── gf_patterns<br>
+~/Bugbounty/targets/intigriti/redbull/<b>redbull.com</b><br>
+|<br>
+|-- urls<br>
+|-- gf_patterns<br>
